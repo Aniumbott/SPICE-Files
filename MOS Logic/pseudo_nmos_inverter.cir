@@ -1,0 +1,18 @@
+* Pseudo NMOS inverter usng NMOS and PMOS
+.include "../Dependencies/cmos_90nm.txt"
+M1 dd G out dd PMOS W=0.1u L=0.13u
+M2 out in 0 0 NMOS w=0.1u L=0.09u
+
+Vgs in 0 1.2
+Vdd dd 0 1.2
+
+* DC analysis
+.dc Vgs 0 1.2 0.01
+
+.control
+run
+set color0 = white
+set xbrushwidth = 3.5
+plot v(out) 
+.endc
+.end

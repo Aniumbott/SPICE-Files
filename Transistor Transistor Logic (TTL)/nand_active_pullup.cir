@@ -1,0 +1,30 @@
+*TTL Nand Acitve Pullup (Totem Pole)
+.model bjt NPN(BF=20)
+.model diode D(N=2)
+
+Vin1 in1 0 PULSE(0 5 0 0 0 5 10)
+Vin2 in2 0 PULSE(0 5 2.5 0 0 5 10)
+Vcc cc 0 5
+
+Q1 base3 base in1 bjt
+Q2 base3 base in2 bjt
+Q3 base5 base3 base4 bjt
+Q4 out base4 0 bjt
+Q5 c5 base5 e5 bjt
+D1 e5 out diode
+Rb cc base 10k
+Rc1 cc base5 1k
+Rc2 cc c5 1k
+Re base4 0 1k
+
+* Transient Analysis
+.tran 0.1 20
+
+.control
+run
+set color0=white
+set xbrushwidth=3.5
+plot v(in1) v(in2)
+plot v(out)
+.endc
+.end

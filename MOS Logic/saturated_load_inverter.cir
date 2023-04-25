@@ -1,0 +1,18 @@
+* NMOS Inverter with saturated load with different channel widths
+.include "../Dependencies/cmos_90nm.txt"
+M1 3 3 2 0 NMOS w=0.2u L=0.09u
+M2 2 1 0 0 NMOS w=50u L=0.09u
+
+Vgs 1 0 1.2
+Vdd 3 0 1.2
+
+* DC analysis
+.dc Vgs 0 1.2 0.01 
+
+.control
+run
+set color0 = white
+set xbrushwidth = 3.5
+plot v(2) 
+.endc
+.end

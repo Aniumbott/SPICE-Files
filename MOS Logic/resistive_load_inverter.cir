@@ -1,0 +1,25 @@
+* NMOS Inverter with resistive load with different channel widths
+.include "../Dependencies/cmos_90nm.txt"
+
+.subckt inv inp out wid = 1u
+    M1 out inp 0 0 nmos W = wid L = 0.090u
+    r1 d out 100k
+    VDS D 0 1.2
+.ends
+
+X1 in out1 inv wid = 0.2u
+X2 in out2 inv wid = 0.4u
+X3 in out3 inv wid = 0.6u
+X4 in out4 inv wid = 0.8u
+X5 in out5 inv wid = 1u
+
+vgs in 0 1.2
+.dc Vgs 0 1.2 0.01
+
+.control
+run
+set color0 = white
+set xbrushwidth = 3.5
+plot v(out1) v(out2) v(out3) v(out4) v(out5)
+.endc
+.end

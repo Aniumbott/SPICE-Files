@@ -1,0 +1,19 @@
+* Voltage Transfer Characteristics (VTC) and Noise Margin (NM) of TTL inverter
+.MODEL bjt npn(BF=20)
+Rb b1 cc 10k
+Rc c2 cc 1k
+Q1 c1 b1 e1 bjt
+Q2 c2 c1 0 bjt
+Vcc cc 0 5
+Vin e1 0 5
+
+* VTC using DC analysis
+.dc Vin 0 5 0.1
+
+.control 
+run 
+set color0=white
+set xbrushwidth = 3
+plot v(c2) v(e1) 
+.endc
+.end

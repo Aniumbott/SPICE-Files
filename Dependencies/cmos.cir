@@ -1,0 +1,12 @@
+*coms u20ec055
+.include cmos_130nm.txt
+M1 d g 0 0 NMOS w=0.25u L=0.13u
+Vds d 0 1.2
+Vgs g 0 1.2
+.dc Vgs 0.1 1.2 0.001
+*.dc vds 0.1 1.2 0.001
+.control
+run
+plot -i(Vds) 
+.endc
+.end

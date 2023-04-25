@@ -1,0 +1,26 @@
+* Nand Passive Pullup
+.model bjt NPN(BF = 20)
+Vin1 in1 0 PULSE(0 5 0 0 0 5 10)
+Vin2 in2 0 PULSE(0 5 2.5 0 0 5 10)
+Vcc cc 0 5
+
+Q1 base3 base in1 bjt
+Q2 base3 base in2 bjt
+Q3 out0 base3 e bjt
+Q4 out e 0 bjt
+R2 out cc 10k
+Re e 0 1k
+R1 base cc 10k
+R3 out0 cc 6.5k
+
+* Transient Analysis
+.tran 0.1 20
+
+.control
+run
+set color0=white
+set xbrushwidth=3.5
+plot v(in1) v(in2)
+plot v(out)
+.endc
+.end

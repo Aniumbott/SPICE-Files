@@ -1,0 +1,18 @@
+* DC analysis of a PMOS transistor
+.include "../Dependencies/cmos_130nm.txt"
+M1 D G S Su PMOS W=1u L=0.13u
+Vs  S 0 0v
+Vsu Su 0 0v
+Vgs G S 1.2v
+Vds D S -1.2V
+
+* DC analysis
+.dc Vds -1.2 0 0.01
+
+.control
+run
+set color0 = white;
+set xbrushwidth = 3.5;
+plot i(Vds)
+.endc
+.end

@@ -1,0 +1,22 @@
+* Emitter coupled logic (ECL)
+.model ECL NPN (BF = 50)
+Rc1 cc c1 0.5k
+Rc2 cc c2 0.5k
+Q1 c1 b1 e ECL
+Q2 c2 b2 e ECL
+Re e ee 1k
+Vee ee 0 -8.5
+Vcc cc 0 -0.6
+Vref b2 0 -4
+Vin b1 0 0
+
+* VTC using DC analysis
+.dc Vin -5 -2 0.001
+
+.control
+run
+set color0=white
+set xbrushwidth=3.5
+plot v(c1) v(c2)
+.endc
+.end

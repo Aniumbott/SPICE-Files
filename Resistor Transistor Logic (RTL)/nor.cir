@@ -1,0 +1,24 @@
+*NOR gate using RTL
+.model transistor NPN (Bf=20)
+
+q1 2 1 0 transistor
+q2 2 3 0 transistor
+rc 6 2 1k
+r1 5 1 6.5k
+r2 4 1 6.5k
+
+va 5 0 pulse(0 5 0 1ns 1ns 80ns 160ns)
+vb 4 0 pulse(0 5 0 1ns 1ns 40ns 80ns)
+vcc 6 0 dc 5
+
+* Transient analysis
+.tran 20ps 320ns
+
+.control
+run
+set color0 = white
+set xbrushwidth = 3.5
+plot v(5) v(4) 
+plot v(2)
+.endc
+.end

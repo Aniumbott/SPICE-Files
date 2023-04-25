@@ -1,0 +1,17 @@
+*RC circuit without uiinitial condition
+vin in 0 pwl( 0 0 65ns 0 65ns 5v 5000ns 5v)
+c1 out 0 65pf
+r1 in out 6.5k
+
+*simulation
+.tran 20ps 5000ns
+
+.control
+run
+set color0=white
+set xbrushwidth=3.5
+plot v(out)
+plot v(in)
+plot v(in) v(out)
+.endc
+.end

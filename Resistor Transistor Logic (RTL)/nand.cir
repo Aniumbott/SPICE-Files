@@ -1,0 +1,24 @@
+*NAND gate using RTL
+.model transistor NPN (Bf=20)
+
+q1 6 3 5 transistor
+q2 5 4 0 transistor
+rc 7 6 1k
+r1 1 3 6.5k
+r2 2 4 6.5k
+
+va 1 0 pulse(0 5 0 1ns 1ns 80ns 160ns)
+vb 2 0 pulse(0 5 17ns 1ns 1ns 30ns 60ns)
+vcc 7 0 dc 5
+
+* Transient Analysis
+.tran 20ps 320ns
+
+.control
+run
+set color0 = white
+set xbrushwidth = 3.5
+plot v(1) v(2) 
+plot v(6) 
+.endc
+.end
